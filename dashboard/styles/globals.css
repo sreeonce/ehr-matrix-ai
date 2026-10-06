@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Condensed&display=swap");
+
+:root {
+  --bg: rgb(27, 26, 24);
+  --ink: #2b2620;
+  --ink-on-dark: #e8e5e5;
+  --muted: #6e6356;
+  --muted-on-dark: #a69a85;
+  --paper: #1b1a18;
+  --surface: #e6e6e6;
+  --surface-2: #fff;
+  --line: #ddd2b8;
+  --teal: #4c5a3c;
+  --teal-deep: #3a4530;
+  --teal-tint: #dbdecb;
+  --amber: #9c6a2e;
+  --amber-tint: #f0e2cc;
+  --red: #8a3a30;
+  --red-tint: #ecdcd4;
+  --radius: 4px;
+  --naming: rgb(253, 253, 253);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink-on-dark);
+  font-family: "Libre Caslon Condensed", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.mono {
+  font-family: "Libre Caslon Condensed", Georgia, serif;
+  font-variant-numeric: tabular-nums;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: var(--teal-deep);
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.page > * + * {
+  margin-top: 14px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.row > .panel {
+  margin-top: 0;
+  height: 100%;
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.label {
+  font-size: 12.5px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 11.5px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--teal-tint);
+  color: var(--teal-deep);
+}
+
+.tag.ai {
+  background: var(--amber-tint);
+  color: var(--amber);
+}
+
+.scroll-x {
+  overflow-x: auto;
+}
+
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
