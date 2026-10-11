@@ -23,9 +23,12 @@ The original plan used MIMIC-IV, which has real clinical notes. Credentialed acc
 
 ## Architecture
 
-vitals + labs (hourly) ──► LSTM ─────────┐
-├──► fusion layer ──► sepsis risk (0-1)
-clinical notes ──► ClinicalBERT ──► MLP ─┘
+
+```text
+Vitals + Labs (Hourly) ──► LSTM ──────────────┐
+                                              ├──► Fusion Layer ──► Sepsis Risk (0–1)
+Clinical Notes ──────────► ClinicalBERT ──► MLP ┘
+```
 
 
 - **Numeric branch:** LSTM over 7 vitals + 3 static fields + 5 labs (32 features total, including "hours since last measured")
@@ -47,18 +50,22 @@ Full ablation and discussion in the case study.
 
 ## Repo structure
 
+
+```text
 ehr-project/
-├── explore_sepsis_2019.py # initial dataset exploration
-├── build_cache.py # fast .psv → pandas cache
-├── build_modeling_table.py # hourly table, label, train/val/test split
-├── sanity_checks.py # label leakage / missingness sanity checks
-├── train_baseline.py # logistic regression + XGBoost baselines
-├── train_lstm.py # LSTM on vitals (+labs)
-├── generate_notes.py # synthetic clinical note generator
-├── embed_notes.py # ClinicalBERT embeddings (run on GPU)
-├── train_fusion.py # numeric / text / fusion model training
-├── export_dashboard_data.py # runs the trained model, exports dashboard JSON
-└── dashboard/ # Next.js dashboard (deployed separately)
+├── explore_sepsis_2019.py       # Initial dataset exploration
+├── build_cache.py               # Fast .psv → pandas cache
+├── build_modeling_table.py      # Hourly table, labels, train/val/test split
+├── sanity_checks.py             # Label leakage and missingness checks
+├── train_baseline.py            # Logistic regression and XGBoost baselines
+├── train_lstm.py                # LSTM on vitals and laboratory measurements
+├── generate_notes.py            # Synthetic clinical note generation
+├── embed_notes.py               # ClinicalBERT embeddings (GPU)
+├── train_fusion.py              # Numeric, text, and fusion model training
+├── export_dashboard_data.py     # Runs trained model and exports dashboard JSON
+└── dashboard/                   # Next.js dashboard (deployed separately)
+```
+
 
 
 ## Running it yourself
